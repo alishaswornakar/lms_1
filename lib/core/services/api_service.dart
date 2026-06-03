@@ -1,12 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:teaching_lms_adv/core/error/error_handler.dart';
+import 'package:teaching_lms_adv/core/network/dio_client.dart';
 import 'package:teaching_lms_adv/core/typedef/either.dart';
 
 class ApiService {
-  final Dio _dio;
-
-  ApiService(this._dio);
+  final DioClient _dioClient;
+  late Dio _dio;
+  ApiService(this._dioClient) {
+    _dio = _dioClient.dio;
+  }
 
   FutureEither<T> get<T>(
     String path, {

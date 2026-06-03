@@ -1,2 +1,1 @@
-
-const String kBaseUrl = "https://api-lunar-lms.sagunbasnet.com.np/api/";
+const String kBaseUrl = "http://lunar-lms.69.164.247.188.sslip.io/api/";

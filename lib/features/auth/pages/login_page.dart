@@ -44,12 +44,14 @@ class _LoginPageState extends State<LoginPage> {
               CustomTextField(
                 controller: _passwordController,
                 labelText: "Password",
+                obscureText: true,
               ),
 
               BlocConsumer<LoginBloc, LoginState>(
                 listener: (context, state) {
                   state.whenOrNull(
                     loaded: (msg) {
+                      AppSnackBar.success(context, message: msg);
                       context.goNamed(RouteName.home);
                     },
 
