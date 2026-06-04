@@ -7,6 +7,8 @@ import 'package:teaching_lms_adv/core/services/api_service.dart';
 import 'package:teaching_lms_adv/core/storage/token_storage.dart';
 import 'package:teaching_lms_adv/features/auth/blocs/login/login_bloc.dart';
 import 'package:teaching_lms_adv/features/auth/repositories/auth_repository.dart';
+import 'package:teaching_lms_adv/features/user_profile/bloc/profile/profile_me_bloc.dart';
+import 'package:teaching_lms_adv/features/user_profile/repository/profile_repo.dart';
 
 final sl = GetIt.instance;
 
@@ -14,10 +16,14 @@ void init() {
   //bloc
 
   sl.registerLazySingleton(() => LoginBloc(authRepository: sl()));
+  sl.registerLazySingleton(() => ProfileBloc(sl()));  
 
   //repo
   sl.registerLazySingleton<AuthRepository>(
     () => AuthRepositoryImpl(apiService: sl(), tokenStorageService: sl()),
+  );
+   sl.registerLazySingleton<ProfileRepository>(
+    () => ProfileRepository(sl<ApiService>()),
   );
 
   //core
