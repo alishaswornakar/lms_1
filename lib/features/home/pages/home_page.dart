@@ -21,6 +21,7 @@ class HomePage extends StatelessWidget {
           children: [
             UserAccountsDrawerHeader(
               accountName: const Text("Welcome User"),
+
               accountEmail: Text(email),
               currentAccountPicture: const CircleAvatar(
                 child: Icon(Icons.person),
@@ -50,7 +51,7 @@ class HomePage extends StatelessWidget {
               title: const Text("Apply for Trainer"),
               onTap: () {
                 Navigator.pop(context);
-                context.push('/apply-trainer');
+                context.push('/trainer-apply');
               },
             ),
 

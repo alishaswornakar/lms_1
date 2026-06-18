@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:teaching_lms_adv/core/blocs/gate_keeper/gate_keeper_cubit.dart';
 import 'package:teaching_lms_adv/core/di/di_init.dart';
+
 import 'package:teaching_lms_adv/core/routes/router.dart';
 import 'package:teaching_lms_adv/core/theme/theme_mode.dart';
 import 'package:teaching_lms_adv/features/auth/blocs/login/login_bloc.dart';
+import 'package:teaching_lms_adv/features/courses/blocs/category_bloc/category_bloc.dart';
+import 'package:teaching_lms_adv/features/courses/blocs/create_course/course_create_bloc.dart';
+import 'package:teaching_lms_adv/features/trainer/bloc/apply_trainer/apply_trainer_bloc.dart';
 import 'package:teaching_lms_adv/features/user_profile/bloc/profile/profile_me_bloc.dart';
 
 void main() {
@@ -19,8 +25,11 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => sl<LoginBloc>()),
-        BlocProvider(create: (context) => sl<ProfileBloc>()), 
-        // BlocProvider(create: (context) => SubjectBloc()),
+        BlocProvider(create: (context) => sl<ProfileBloc>()),
+        BlocProvider(create: (context) => sl<TrainerApplyBloc>()),
+        BlocProvider(create: (context) => sl<GateKeeperCubit>()),
+        BlocProvider(create: (context) => sl<CourseCreateBloc>()),
+        BlocProvider(create: (context) => sl<CategoryBloc>()),
       ],
       child: MaterialApp.router(
         title: 'LMS App',
@@ -28,7 +37,7 @@ class MyApp extends StatelessWidget {
         theme: AppThemeMode.lightTheme(context),
         darkTheme: AppThemeMode.darkTheme(context),
         themeMode: ThemeMode.system,
-        routerConfig: AppRoute.router(),
+        routerConfig: AppRoute.router,
       ),
     );
   }
